@@ -1,15 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import Root from './routes/root';
+import Create from './routes/session/create';
+import Join from './routes/session/join';
+
+
+// Google Fonts
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: 'session/create',
+        element: <Create />
+      },
+      {
+        path: 'session/join',
+        element: <Join />
+      }
+    ]
+  },
+])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
